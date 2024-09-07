@@ -13,10 +13,9 @@ win = pygame.display.set_mode((SCREENWIDTH, SCREENHEIGHT))
 pygame.display.set_caption("The Adventures of a Peasant")
 clock = pygame.time.Clock()
 
-# MUSIC INFO - THE WALLS OF EBONHAWKE, A LAND RESTORED, LOGANS JOURNEY, THE TENGU WALL, TYRIA REBORN,
-# DAWN IN SHAEMOOR, OUT OF THE DREAM, HERITAGE OF HUMANITY, THE SEA OF SORROWS
-pygame.mixer.music.load("music_playlist.wav")
-musicIsPaused = False
+# MUSIC IS COMMENTED OUT. UNCOMMENT THE LINES AND REPLACE THE FILENAMES WITH MUSIC FILES TO ADD MUSIC.
+# pygame.mixer.music.load("music_playlist.wav")
+# musicIsPaused = False
 
 # COLORS
 red = (255, 0, 0)
@@ -34,8 +33,7 @@ darkorange = (235, 145, 0)
 darkgrey = (100, 100, 100)
 
 # Armor Types
-# farmer/peasant/nothing, leather, chainmail, heavy iron, ???
-# each will have its own durabilities/points(?) and armor worth
+
 
 # Swords/Weapons
 
@@ -253,19 +251,7 @@ class Menu:
         button_return = pygame.Rect(button_return_x, button_return_y, button_return_width, button_return_height)
 
         margin = 20
-        # button_musicambient_x = screen_rect_x + margin + 100
-        # button_musicambient_y = 200
-        # button_musicambient_width = 200
-        # button_musicambient_height = 50
-        # button_musicambient = pygame.Rect(button_musicambient_x, button_musicambient_y, button_musicambient_width,
-        #                                   button_musicambient_height)
-        #
-        # button_musicbattle_x = button_musicambient_x + margin + button_musicambient_width
-        # button_musicbattle_y = button_musicambient_y
-        # button_musicbattle_width = button_musicambient_width
-        # button_musicbattle_height = button_musicambient_height
-        # button_musicbattle = pygame.Rect(button_musicbattle_x, button_musicbattle_y, button_musicbattle_width,
-        #                                  button_musicbattle_height)
+
 
         title_text = titlefont.render('Credits', True, black)
         title_rect = title_text.get_rect(center=(round(screen_rect.center[0]), 150))
@@ -292,10 +278,6 @@ class Menu:
                              black)
         author_rect = author.get_rect(topleft=(round(screen_rect_x + margin), 325))
 
-        # ambient_text = font.render('Ambient/Adventure', True, black)
-        # ambient_rect = ambient_text.get_rect(center=button_musicambient.center)
-        # battle_text = font.render('Battle', True, black)
-        # battle_rect = battle_text.get_rect(center=button_musicbattle.center)
 
         while isInCredits:
             mouse = pygame.mouse.get_pos()
@@ -307,31 +289,24 @@ class Menu:
             if (button_return_x <= mouse[0] <= button_return_x + button_return_width and
                     button_return_y <= mouse[1] <= button_return_y + button_return_height):
                 returncolor = button_hovergrey
-            # elif (button_musicambient_x <= mouse[0] <= button_musicambient_x + button_musicambient_width and
-            #       button_musicambient_y <= mouse[1] <= button_musicambient_y + button_musicambient_height):
-            #     ambientcolor = button_hovergrey
-            # elif (button_musicbattle_x <= mouse[0] <= button_musicbattle_x + button_musicbattle_width and
-            #       button_musicbattle_y <= mouse[1] <= button_musicbattle_y + button_musicbattle_height):
-            #     battlecolor = button_hovergrey
+
 
             pygame.draw.rect(win, orange, screen_outline)
             pygame.draw.rect(win, white, screen_rect)
             pygame.draw.rect(win, returncolor, button_return)
-            # pygame.draw.rect(win, ambientcolor, button_musicambient)
-            # pygame.draw.rect(win, battlecolor, button_musicbattle)
+
 
             returnImg = pygame.transform.scale(returnImg, (button_return_width, button_return_height))
             win.blit(returnImg, (button_return_x, button_return_y))
 
             win.blit(title_text, title_rect)
-            # win.blit(return_text, return_rect)
-            win.blit(musicType, musicType_rect)
-            win.blit(musicType2, musicType2_rect)
+
+            # win.blit(musicType, musicType_rect)
+            # win.blit(musicType2, musicType2_rect)
             win.blit(code, code_rect)
             win.blit(code2, code2_rect)
             win.blit(author, author_rect)
-            # win.blit(ambient_text, ambient_rect)
-            # win.blit(battle_text, battle_rect)
+
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -607,8 +582,6 @@ class Menu:
             temp = stat_gold_text.get_rect(center=gold_rect.center)
             temp = stat_name_text.get_rect(center=name_rect.center)
             intermediate_rect = intermediate.get_rect(topleft=(150, 150))
-            # intermediate_rect.x = 100
-            # intermediate_rect.y = 100
 
             '''Button Colors'''
             inv_color = button_grey
@@ -797,7 +770,6 @@ class Menu:
                     if (button_inventory_x <= mouse[0] <= button_inventory_x + button_inventory_width and
                             button_inventory_y <= mouse[1] <= button_inventory_y + button_inventory_height):
                         result = p1.returnInventory()
-                        # text += result
                         if result == None:
                             pass
                         else:
@@ -808,7 +780,6 @@ class Menu:
                     elif (button_explore_x <= mouse[0] <= button_explore_x + button_explore_width and
                           button_explore_y <= mouse[1] <= button_explore_y + button_explore_height):
                         result = p1.explore()
-                        # text += result
                         if result == None:
                             pass
                         else:
@@ -827,7 +798,6 @@ class Menu:
                     elif (button_flee_x <= mouse[0] <= button_flee_x + button_flee_width and
                           button_flee_y <= mouse[1] <= button_flee_y + button_flee_height):
                         result = p1.flee()
-                        # text += result
                         if result == None:
                             pass
                         else:
@@ -836,7 +806,6 @@ class Menu:
                     elif (button_trade_x <= mouse[0] <= button_trade_x + button_trade_width and
                           button_trade_y <= mouse[1] <= button_trade_y + button_trade_height):
                         result = p1.trade()
-                        # text += result
                         if result == None:
                             pass
                         else:
@@ -845,7 +814,6 @@ class Menu:
                     elif (button_yes_x <= mouse[0] <= button_yes_x + button_yes_width and
                           button_yes_y <= mouse[1] <= button_yes_y + button_yes_height):
                         result = p1.yes()
-                        # text += result
                         if result == None:
                             pass
                         else:
@@ -854,7 +822,6 @@ class Menu:
                     elif (button_no_x <= mouse[0] <= button_no_x + button_no_width and
                           button_no_y <= mouse[1] <= button_no_y + button_no_height):
                         result = p1.no()
-                        # text += result
                         if result == None:
                             pass
                         else:
@@ -863,7 +830,6 @@ class Menu:
                     elif (button_food_x <= mouse[0] <= button_food_x + button_food_width and
                           button_food_y <= mouse[1] <= button_food_y + button_food_height):
                         result = p1.use('meat')
-                        # text += result
                         if result == None:
                             pass
                         else:
@@ -1020,19 +986,13 @@ class Menu:
         inMenu = True
         update_rect = pygame.Rect(150, 150, 1000, 475)
 
-        # button_findTown_x = button_findTown_y = button_findTown_width = button_findTown_height = button_findTown =
-        # pygame.Rect(button_findTown_x, button_findTown_y, button_findTown_width, button_findTown_height)
-        #
-        # button_continueWalking_x = button_continueWalking_y = button_continueWalking_width =
-        # button_continueWalking_height = button_continueWalking = pygame.Rect(button_continueWalking_x,
-        # button_continueWalking_y, button_continueWalking_width, button_continueWalking_height)
+
 
         while inMenu:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.exit()
-                # if event.type == pygame.MOUSEBUTTONDOWN:
 
             pygame.display.update(update_rect)
 
@@ -1157,13 +1117,7 @@ class Menu:
                     if (button_continue_x <= mouse[0] <= button_continue_x + button_continue_width and
                             button_continue_y <= mouse[1] <= button_continue_y + button_continue_height):
                         return
-                    elif (button_mute_x <= mouse[0] <= button_mute_x + button_mute_width and
-                          button_mute_y <= mouse[1] <= button_mute_y + button_mute_height):
-                        pause()
 
-                    elif (button_music_x <= mouse[0] <= button_music_x + button_music_width and
-                          button_music_y <= mouse[1] <= button_music_y + button_music_height):
-                        unpause()
 
                     elif (button_options_x <= mouse[0] <= button_options_x + button_options_width and
                           button_options_y <= mouse[1] <= button_options_y + button_options_height):
@@ -1254,7 +1208,6 @@ class Menu:
             win.blit(returnImg, (button_return_x, button_return_y))
 
             win.blit(title_text, title_rect)
-            # win.blit(return_text, return_rect)
             win.blit(musicType, musicType_rect)
             win.blit(ambient_text, ambient_rect)
             win.blit(battle_text, battle_rect)
@@ -1267,21 +1220,13 @@ class Menu:
                     if (button_return_x <= mouse[0] <= button_return_x + button_return_width and
                             button_return_y <= mouse[1] <= button_return_y + button_return_height):
                         return
-                    elif (button_musicambient_x <= mouse[0] <= button_musicambient_x + button_musicambient_width and
-                          button_musicambient_y <= mouse[1] <= button_musicambient_y + button_musicambient_height):
-                        switchAmbient()
-                    elif (button_musicbattle_x <= mouse[0] <= button_musicbattle_x + button_musicbattle_width and
-                          button_musicbattle_y <= mouse[1] <= button_musicbattle_y + button_musicbattle_height):
-                        switchBattle()
-                    #     if musicIsPaused:
-                    #         musicIsPaused = False
-                    #         unpause()
-                    #     elif not musicIsPaused:
-                    #         musicIsPaused = True
-                    #         pause()
-                    # elif (button_options_x <= mouse[0] <= button_options_x + button_options_width and
-                    #         button_options_y <= mouse[1] <= button_options_y + button_options_height):
-                    #     self.options()
+                    # elif (button_musicambient_x <= mouse[0] <= button_musicambient_x + button_musicambient_width and
+                    #       button_musicambient_y <= mouse[1] <= button_musicambient_y + button_musicambient_height):
+                    #     switchAmbient()
+                    # elif (button_musicbattle_x <= mouse[0] <= button_musicbattle_x + button_musicbattle_width and
+                    #       button_musicbattle_y <= mouse[1] <= button_musicbattle_y + button_musicbattle_height):
+                    #     switchBattle()
+
             pygame.display.update(screen_outline)
 
     def gameLose(self):
@@ -1293,7 +1238,6 @@ class Menu:
         # Images
         backgroundImg = pygame.image.load("icon/png/lose.png")
         backgroundImg = pygame.transform.scale(backgroundImg, (SCREENWIDTH, SCREENHEIGHT))
-        # restartImg = pygame.image.load('icon/png/return.png')
 
         # Restart Button
         button_restart_x = SCREENWIDTH / 2
@@ -1301,7 +1245,6 @@ class Menu:
         button_restart_width = 100
         button_restart_height = 30
         button_restart = pygame.Rect(button_restart_x, button_restart_y, button_restart_width, button_restart_height)
-        # restartImg = pygame.transform.scale(restartImg, (button_restart_width, button_restart_height))
 
         # Font/Text
         font = pygame.font.SysFont('Arial', 20)
@@ -1324,7 +1267,6 @@ class Menu:
             pygame.draw.rect(win, (255, 255, 255, 20), screen_rect)
             win.blit(backgroundImg, (0, 0))
             pygame.draw.rect(win, white, button_restart)
-            # win.blit(restartImg, (button_restart_x, button_restart_y))
             win.blit(returntext, returntext_rect)
             pygame.display.update()
 
@@ -1457,7 +1399,7 @@ inventory = ['meat', 'meat']
 p1 = Player(win, 'normal', None, inventory, player_name, 0, 250, 100, max_health, Defense(), Utility.hand)
 m1 = Menu(win)
 
-pygame.mixer.music.play(-1)
+# pygame.mixer.music.play(-1)
 m1.mainMenu()
 
 pygame.quit()
